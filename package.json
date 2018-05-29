@@ -1,0 +1,19 @@
+{
+  "name": "elecron-demo",
+  "version": "1.0.0",
+  "description": "A electron demo by agrimonia",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Agrimonia",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agrimonia/electron-demo.git"
+  },
+  "devDependencies": {
+    "electron": "^2.0.2"
+  }
+}
