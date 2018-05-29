@@ -14,6 +14,16 @@
     "url": "https://github.com/agrimonia/electron-demo.git"
   },
   "devDependencies": {
-    "electron": "^2.0.2"
+    "electron-compilers": "^5.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2"
+  },
+  "dependencies": {
+    "electron": "^2.0.2",
+    "electron-compile": "^6.4.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   }
 }

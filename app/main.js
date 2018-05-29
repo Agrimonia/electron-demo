@@ -1,33 +1,34 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
-const url = require('url')
-let mainWindow
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+const url = require('url');
+
+let mainWindow;
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 })
+  mainWindow = new BrowserWindow({ width: 800, height: 600 });
   // 启动文件入口，如 index.html
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
-    slashes: true
-  }))
+    slashes: true,
+  }));
   // 开启 Chromium DevTools
-  mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools();
   // 监听窗口关闭事件
-  mainWindow.on('closed', function () {
-    mainWindow = null
-  })
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
 }
 // 加载就绪
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 // 监听所有窗口关闭的事件
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    app.quit()
+    app.quit();
   }
-})
+});
 // 激活窗口
-app.on('activate', function () {
+app.on('activate', () => {
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
   }
-})
+});
