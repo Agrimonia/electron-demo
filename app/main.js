@@ -2,6 +2,14 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
+const isDevelopment = true;
+if (isDevelopment) {
+  /* eslint-disable */
+  require('electron-reload')(__dirname, {
+    electron: require('${__dirname}/../../node_modules/electron'),
+    ignored: /node_modules|[\/\\]\./
+  });
+}
 let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({ width: 800, height: 600 });
@@ -12,7 +20,7 @@ function createWindow() {
     slashes: true,
   }));
   // 开启 Chromium DevTools
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
   // 监听窗口关闭事件
   mainWindow.on('closed', () => {
     mainWindow = null;

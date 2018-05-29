@@ -2,7 +2,7 @@
   "name": "elecron-demo",
   "version": "1.0.0",
   "description": "A electron demo by agrimonia",
-  "main": "app/main.js",
+  "main": "index.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,7 +14,10 @@
     "url": "https://github.com/agrimonia/electron-demo.git"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "electron-compilers": "^5.9.0",
+    "electron-reload": "^1.2.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
