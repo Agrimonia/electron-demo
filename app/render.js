@@ -11,7 +11,7 @@ class MainWindow extends React.Component {
   render() {
     return (
       <div>
-        Good, React Ready!
+        Why?
       </div>
     );
   }
