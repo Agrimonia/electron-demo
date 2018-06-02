@@ -5,6 +5,7 @@ import ActionInfo from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import Avatar from 'material-ui/Avatar';
 import ActionBackup from 'material-ui/svg-icons/action/backup';
 import { blue400 } from 'material-ui/styles/colors';
+import { grey800 } from 'material-ui/styles/colors';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 const svgStyles = {
@@ -24,7 +25,7 @@ export default class DrawerUndockedExample extends React.Component {
   render() {
     return (
       <div className="_menu">
-        <FloatingActionButton className="action" onClick={this.handleToggle.bind(this)} backgroundColor={lightWhite}  mini={true}>
+        <FloatingActionButton className="action" onClick={this.handleToggle.bind(this)} mini={true}>
           <NavigationMenu style={svgStyles} />
         </FloatingActionButton>
         <Drawer
