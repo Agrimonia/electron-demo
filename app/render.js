@@ -1,17 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+//import DynamicDoughnut from './DynamicDoughnut';
+const remote = require('electron').remote;
+import DonutChart from 'react-donut-chart';
 class MainWindow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
   }
+  /*
+  componentWillMount() {
+    setInterval(() => {
+      this.setState(remote.getGlobal('hostData'));
+    },1000);
+  }
+  */
   render() {
     return (
       <div>
-        Hello
+        <DonutChart data={remote.getGlobal('hostData')}/>
       </div>
     );
   }

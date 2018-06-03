@@ -1,5 +1,4 @@
 // lowdb
-/*
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
@@ -7,7 +6,10 @@ const adapter = new FileSync('db.json')
 const db = low(adapter)
 db.defaults({ records: [] })
   .write()
-*/
+
+// date-time
+const dateTime = require('date-time');
+
 const { Cap, decoders } = require('cap');
 const PROTOCOL = decoders.PROTOCOL;
 
@@ -34,11 +36,9 @@ c.on('packet', function (nbytes, trunc) {
         let host = buffer.toString('binary', ret.offset, ret.offset + datalen).match(/(?<=Host: )(.*)/);
         if(host != null) {
           console.log(host[1]);
-          /*
           db.get("records")
-            .push({ Time: data,"host": host[1] })
+            .push({ Time: datetime(), "host": host[1] })
             .write();
-          */
         }
       }
     }
