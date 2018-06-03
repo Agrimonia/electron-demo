@@ -1,4 +1,4 @@
-const { app, BrowserWindow} = require('electron');
+const { app, BrowserWindow, Notification } = require('electron');
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
@@ -68,13 +68,6 @@ app.on('ready', () => {
     console.log('stdout: ' + data);
     dataFilter('' + data);
   });
-  /*
-  cap.on('message', function (data) {
-    console.log(data);
-    global.hostData = dataFilter(data);
-    console.log(global.hostData);
-  });
-  */
 });
 // 监听所有窗口关闭的事件
 app.on('window-all-closed', () => {
@@ -92,12 +85,6 @@ app.on('activate', () => {
 });
 
 function dataFilter(data) {
-  console.log(global.hostData[0]);
-  console.log(global.hostData[1]);
-  console.log(global.hostData[2]);
-  console.log(global.hostData[3]);
-  console.log(global.hostData[4]);
-  console.log(global.hostData[5]);
   if(data.search(/baidu|google|bing/) != -1) {
     global.hostData[0].value++;
   } else if (data.search("uestc") != -1) {
@@ -106,10 +93,36 @@ function dataFilter(data) {
     global.hostData[2].value++;
   } else if (data.search(/qq|tencent/) != -1) {
     global.hostData[3].value++;
-  } else if (data.search(/taobao|jd.com/) != -1) {
+  } else if (data.search(/taobao|jd/) != -1) {
     global.hostData[4].value++;
+    if(Notification.isSupported()){
+      throttle(showNotification(), 10000);
+    };
   } else {
     global.hostData[5].value++;
   }
   return hostData;
 }
+// 时间戳-节流
+function throttle(func, wait) {
+  var context, args;
+  var previous = 0;
+  return function () {
+    var now = +new Date();
+    context = this;
+    args = arguments;
+    if (now - previous > wait) {
+      func.apply(context, args);
+      previous = now;
+    }
+  }
+}
+// 弹窗通知
+function showNotification() {
+  const notifiWindow = new Notification({
+    title: "Orz",
+    body: "女神，618 再买吧！求您了！",
+    closeButtonText: ""
+  });
+  notifiWindow.show();
+};

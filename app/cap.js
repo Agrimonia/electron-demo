@@ -36,9 +36,11 @@ c.on('packet', function (nbytes, trunc) {
         let host = buffer.toString('binary', ret.offset, ret.offset + datalen).match(/(?<=Host: )(.*)/);
         if(host != null) {
           console.log(host[1]);
+          /*
           db.get("records")
             .push({ Time: datetime(), "host": host[1] })
             .write();
+          */
         }
       }
     }
