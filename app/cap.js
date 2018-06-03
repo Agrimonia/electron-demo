@@ -39,7 +39,7 @@ c.on('packet', function (nbytes, trunc) {
           console.log(host[1]);
           /*
           db.get("records")
-            .push({ Time: datetime(), "host": host[1] })
+            .push({ "time": datetime(), "dstIP": ret.info.dstaddr, "host": host[1] })
             .write();
           */
         }
