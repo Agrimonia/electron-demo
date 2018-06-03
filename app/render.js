@@ -6,18 +6,21 @@ import DonutChart from 'react-donut-chart';
 class MainWindow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      hostData: remote.getGlobal('hostData')
+    }
   }
-  /*
+  
   componentWillMount() {
     setInterval(() => {
-      this.setState(remote.getGlobal('hostData'));
-    },1000);
+      this.state.hostData = remote.getGlobal('hostData');
+    },5000);
   }
-  */
+  
   render() {
     return (
       <div>
-        <DonutChart data={remote.getGlobal('hostData')}/>
+        <DonutChart data={this.state.hostData}/>
       </div>
     );
   }
