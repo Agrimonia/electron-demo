@@ -15,8 +15,8 @@ if (isDevelopment) {
 let mainWindow, cap, hostData;
 function createWindow() {
   mainWindow = new BrowserWindow({ 
-    height: 600, // 高
-    width: 800, // 宽
+    height: 770, // 高
+    width: 900, // 宽
   });
   // 启动文件入口，如 index.html
   mainWindow.loadURL(url.format({
