@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "cap": "^0.2.0",
+    "date-time": "^2.1.0",
     "electron": "^2.0.2",
     "electron-compile": "^6.4.2",
     "lowdb": "^1.0.0",
