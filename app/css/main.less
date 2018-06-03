@@ -1,43 +1,79 @@
 @import "./_reset.less";
-body, .box::before{
-  overflow: hidden;
+*,
+*:after,
+*:before {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
-a {
-  text-decoration: none;
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
-.box {
-  text-align: center;
-  color: #fff;
-  position: absolute;
-  width: 500px;
-  height: 400px;
-  background: rgba(255, 255, 255, 0.3);
-  top: 50%;
-  left: 50%;
-  margin: -200px 0 0 -250px;
-  border-radius: 8px;
-  background: hsla(0,0%,100%,.3);
-  overflow: hidden;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+body {
+	font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+  background-color: #EEEEEE;
+  color: #424242;
 }
-.box::before { 
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  filter: blur(10px);
-  margin: -20px;
-  z-index: -1;
+
+#root {
+    height: 500;
+    width: 750;
 }
-.box {
-  .desc {
-    font-size: 12px;
-    position: absolute;
-    bottom: 90px;
-    opacity: 0.6;
+
+.donutchart-arcs-path, .donutchart-legend-item-rect, .donutchart-legend-item-label {
     cursor: pointer;
-    letter-spacing: 1px;
-  }
+}
+
+.donutchart-innertext-label {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.donutchart-innertext-value {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.donutchart-arcs-path, .donutchart-legend-item-rect {
+    fill-opacity: 0;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-iteration: 1;
+
+    animation-name: DrawLine, FillIn;
+
+    animation-delay: .5s, 2s;
+    animation-duration: 3s, 1s; 
+    stroke-dashArray: 1500;
+    stroke-dashoffset: 1500;
+}
+
+@keyframes DrawLine {
+    to {
+        stroke-dashOffset: 0;
+    }
+}
+
+@keyframes FillIn {
+    from {
+        fill-opacity: 0;
+    }
+    to {
+        fill-opacity: 1;
+    }
+}
+
+.selected.donutchart-legend-item-label, .toggled.donutchart-legend-item-label {
+    fill: #f44336;
+    text-decoration: underline;
 }
