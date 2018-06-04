@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 const remote = require('electron').remote;
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+const fs = require('fs');
+import { List, Layout, Menu, Breadcrumb, Icon } from 'antd';
 import DonutChart from 'react-donut-chart';
 const { Header, Content, Footer } = Layout;
 import { Input } from 'antd';
@@ -12,7 +13,9 @@ export default class Navigator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hostData: remote.getGlobal('hostData')
+      hostData: remote.getGlobal('hostData'),
+      ip: remote.getGlobal('localhost').ip,
+      list: ""//JSON.parse(fs.readFileSync("/Users/agrimonia/electron-demo/db.json")).records[0]
     }
   }
   componentWillMount() {
@@ -39,12 +42,24 @@ export default class Navigator extends React.Component {
               </div>
             </TabPane>
             <TabPane tab="Notification" key="2">
-              <div>
-                <TextArea rows={4} />
-              </div>
+              <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>Home</Breadcrumb.Item>
+                <Breadcrumb.Item>Notification</Breadcrumb.Item>
+              </Breadcrumb>
+                报警网址：
+                <TextArea rows={4} defaultValue={"jd"}/>
             </TabPane>
             <TabPane tab="Capture Record" key="3">
-              Capture Record
+              <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>Home</Breadcrumb.Item>
+                <Breadcrumb.Item>Capture Record</Breadcrumb.Item>
+              </Breadcrumb>
+              本机IP: {this.state.ip}
+              <List
+                bordered
+                dataSource={this.state.list}
+                renderItem={item => (<List.Item>{item}</List.Item>)}
+              />
             </TabPane>
           </Tabs>
         </Content>

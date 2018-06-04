@@ -1,5 +1,4 @@
 // lowdb
-/*
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
@@ -7,7 +6,7 @@ const adapter = new FileSync('db.json')
 const db = low(adapter)
 db.defaults({ records: [] })
   .write()
-*/
+
 // date-time
 const dateTime = require('date-time');
 
@@ -30,6 +29,7 @@ c.on('packet', function (nbytes, trunc) {
 
     if (ret.info.type === PROTOCOL.ETHERNET.IPV4) {
       ret = decoders.IPV4(buffer, ret.offset);
+      let DstIP = ret.info.dstaddr;
       if (ret.info.protocol === PROTOCOL.IP.TCP) {
         let datalen = ret.info.totallen - ret.hdrlen;
         ret = decoders.TCP(buffer, ret.offset);
@@ -37,11 +37,9 @@ c.on('packet', function (nbytes, trunc) {
         let host = buffer.toString('binary', ret.offset, ret.offset + datalen).match(/(?<=Host: )(.*)/);
         if(host != null) {
           console.log(host[1]);
-          /*
           db.get("records")
-            .push({ "time": datetime(), "dstIP": ret.info.dstaddr, "host": host[1] })
+            .push({ "time": dateTime(), "DstIP": DstIP, "host": host[1] })
             .write();
-          */
         }
       }
     }

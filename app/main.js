@@ -33,6 +33,9 @@ function createWindow() {
 }
 // 加载就绪
 app.on('ready', () => {
+  global.localhost = {
+    ip: getIP()
+  }
   global.hostData = [{
         label: "search",
         value: 0
@@ -96,7 +99,7 @@ function dataFilter(data) {
   } else if (data.search(/taobao|jd/) != -1) {
     global.hostData[4].value++;
     if(Notification.isSupported()){
-      throttle(showNotification(), 10000);
+      throttle(showNotification(), 1000);
     };
   } else {
     global.hostData[5].value++;
@@ -126,3 +129,14 @@ function showNotification() {
   });
   notifiWindow.show();
 };
+
+function getIP() {
+  const os = require('os');
+  let IPv4;
+  for (var i = 0; i < os.networkInterfaces().en0.length; i++) {
+    if (os.networkInterfaces().en0[i].family == 'IPv4') {
+      IPv4 = os.networkInterfaces().en0[i].address;
+    }
+  }
+  return IPv4;
+}
